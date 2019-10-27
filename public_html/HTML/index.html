@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+	<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../CSS/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+
+		<div id="MainMenu">
+			<button class="start" type="button" 
+				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> START </button>
+			<button class="options" type="button" 
+				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> OPTIONS </button>
+			<button class="load" type="button" 
+				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> LOAD </button>
+		</div>
+		<div id="MainGame">
+				
+			<nav role="navigation">
+				<div id="menuToggle">
+				<!--
+				A fake / hidden checkbox is used as click reciever,
+				so you can use the :checked selector on it.
+				-->
+					<input type="checkbox" />
+				
+				<!--
+				Some spans to act as a hamburger.
+				
+				They are acting like a real hamburger,
+				not that McDonalds stuff.
+				-->
+					<span></span>
+					<span></span>
+					<span></span>
+				
+				<!--
+				Too bad the menu has to be inside of the button
+				but hey, it's pure CSS magic.
+				-->
+					<ul id="menu">
+						<li><button class="load">LOAD</button></li>
+						<li><button class="save">SAVE</button></li>
+						<li><button class="options" type="button" 
+				onclick="document.getElementById('MainGame').style.display = 'none', document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
+					</ul>
+				</div>
+			</nav>
+			<form>
+				<p> PLANSZA </p>
+				<div id="InGameOptions">
+					<button class="OneMove">1 Move</button>
+					<button class="FiveMoves">5 Moves</button>
+					<button class="TenMoves">10 Moves</button>
+					<button class="FiftyMoves">50 Moves</button>
+					<br>
+					<select name="interval">
+						<option value="100">1/8 sekundy</option>
+						<option value="250">1/4 sekundy</option>
+						<option value="500">1/2 sekundy</option>
+						<option value="1000" selected="selected">1 sekunda</option>
+						<option value="2000">2 sekundy</option>
+					</select>
+					<input type="button" onclick="myFunction()" value="START"> 
+				
+				</div>
+			</form>
+		</div>
+		<div id="MainOptions">
+
+		</div>
+		<div id="MainLoad">
+
+		</div>
+	</body>
+</html>

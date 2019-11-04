@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 	<head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body>
 
 		<div id="MainMenu">
 			<button class="start" type="button" 
-				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> START </button>
+				onclick="document.getElementById('MainGame').style.display = 'inline',
+				document.getElementById('MainOptions').style.display = 'none',
+				document.getElementById('MainInstruction').style.display = 'none',
+				document.getElementById('MainLoad').style.display = 'none'"> START </button>
 			<button class="options" type="button" 
-				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> OPTIONS </button>
+				onclick="document.getElementById('MainOptions').style.display = 'inline', 
+				document.getElementById('MainGame').style.display = 'none',
+				document.getElementById('MainInstruction').style.display = 'none',
+				document.getElementById('MainLoad').style.display = 'none'"> OPTIONS </button>
 			<button class="load" type="button" 
-				onclick="document.getElementById('MainGame').style.display = 'inline', document.getElementById('MainMenu').style.display = 'none'"> LOAD </button>
+				onclick="document.getElementById('MainInstruction').style.display = 'inline', document.getElementById('MainGame').style.display = 'none',
+				document.getElementById('MainOptions').style.display = 'none',
+				document.getElementById('MainLoad').style.display = 'none'"> INSTRUCTION </button>
+			<button class="load" type="button" 
+				onclick="document.getElementById('MainLoad').style.display = 'inline',
+				document.getElementById('MainGame').style.display = 'none',
+				document.getElementById('MainOptions').style.display = 'none',
+				document.getElementById('MainInstruction').style.display = 'none'"> LOAD </button>
 		</div>
+
 		<div id="MainGame">
-				
 			<nav role="navigation">
 				<div id="menuToggle">
+				<!--
+				A fake / hidden checkbox is used as click reciever,
+				so you can use the :checked selector on it.
+				-->
 					<input type="checkbox" />
-
+				
+				<!--
+				Some spans to act as a hamburger.
+				
+				They are acting like a real hamburger,
+				not that McDonalds stuff.
+				-->
 					<span></span>
 					<span></span>
 					<span></span>
-
+				
+				<!--
+				Too bad the menu has to be inside of the button
+				but hey, it's pure CSS magic.
+				-->
 					<ul id="menu">
 						<li><button class="load">LOAD</button></li>
 						<li><button class="save">SAVE</button></li>
@@ -32,25 +59,68 @@
 					</ul>
 				</div>
 			</nav>
+			<!--
+			
+			
+			
+			
+			
+			
+										<p> PLANSZA </p>
+			
+			
+			
+			
+			
+			
+			
+			-->
 			<form>
-				<p> PLANSZA </p>
-				<div id="InGameOptions">
+				<div id="FooterOptions">
 					<button class="OneMove">1 Move</button>
 					<button class="FiveMoves">5 Moves</button>
 					<button class="TenMoves">10 Moves</button>
 					<button class="FiftyMoves">50 Moves</button>
 					<br>
+					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="50" min="5" max="100">
+					<br>
+					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="50" min="5" max="100">
+							
 					<select name="interval">
-						<option value="100">1/8 sekundy</option>
-						<option value="250">1/4 sekundy</option>
-						<option value="500">1/2 sekundy</option>
-						<option value="1000" selected="selected">1 sekunda</option>
-						<option value="2000">2 sekundy</option>
+						<option value="100">1/8 sec</option>
+						<option value="250">1/4 sec</option>
+						<option value="500">1/2 sec</option>
+						<option value="1000" selected="selected">1 sec</option>
+						<option value="2000">2 sec</option>
 					</select>
+					
 					<input type="button" onclick="myFunction()" value="START"> 
-				
+					<br>
+					<script>
+						var slider1 = document.getElementById("heightY");
+						var output1 = document.getElementById("valuesY");
+						output1.innerHTML = slider1.value;
+
+						slider1.oninput = function() {
+						  output1.innerHTML = this.value;
+						}
+						
+						var slider2 = document.getElementById("widthX");
+						var output2 = document.getElementById("valuesX");
+						output2.innerHTML = slider2.value;
+
+						slider2.oninput = function() {
+						  output2.innerHTML = this.value;
+						}
+					</script>
+
 				</div>
 			</form>
+		</div>
+		<div id="MainInstruction">
+			<p>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</p>
+			
+			<p>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</p>
 		</div>
 		<div id="MainOptions">
 
@@ -58,5 +128,6 @@
 		<div id="MainLoad">
 
 		</div>
+
 	</body>
 </html>

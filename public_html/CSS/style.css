@@ -1,11 +1,11 @@
 body {
 	background-color: #333;
-	padding: 0;
+	    padding: 0;
     margin: 0;
 }
 
 
-#InGameOptions {
+#FooterOptions {
 	position: fixed;
     height: 90px;
     width: 100%;
@@ -13,7 +13,7 @@ body {
     bottom: 0;
 }
 
-#InGameOptions button {
+#FooterOptions button {
 	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
 	background-color:#79bbff;
@@ -29,11 +29,11 @@ body {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #528ecc;
 }
-#InGameOptions button:hover {
+#FooterOptions button:hover {
 	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
 	background-color:#378de5;
 }
-#InGameOptions button:active {
+#FooterOptions button:active {
 	position:relative;
 	top:1px;
 }
@@ -55,11 +55,7 @@ a:hover
 {
   display: block;
   position: relative;
-  top: 50px;
-  /*left: 50px;*/
-  
   z-index: 1;
-  
   -webkit-user-select: none;
   user-select: none;
 }
@@ -72,12 +68,9 @@ a:hover
   position: absolute;
   top: -7px;
   left: -5px;
-  
   cursor: pointer;
-  
   opacity: 0; /* hide this */
   z-index: 2; /* and place it over the hamburger */
-  
   -webkit-touch-callout: none;
 }
 
@@ -91,14 +84,10 @@ a:hover
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  
   background: #cdcdcd;
   border-radius: 3px;
-  
   z-index: 1;
-  
   transform-origin: 4px 0px;
-  
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               opacity 0.55s ease;
@@ -154,11 +143,9 @@ a:hover
 	width: 300px;
 	margin: 0 0 0 0px;
     padding: 20px;
-  /*padding-top: 125px;*/
 	background: #ededed;
 	list-style-type: none;
 	-webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
 	transform-origin: 0% 0%;
 	transform: translate(-100%, 0);
 	transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
@@ -179,6 +166,7 @@ a:hover
 }
 /*==============================================================*/
 #MainMenu {
+
 	display: inline;
 }
 
@@ -210,38 +198,4 @@ button.start,button.load,button.options,button.save{
 	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
 	
 }
-/*
-button.options{
-	width: 100%;
-	height: 53px;
-	box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px; 
-	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
-	border-radius: 10px; 
-	border: 1px solid rgb(51, 48, 41); 
-	display: inline-block; 
-	cursor: pointer; 
-	color: rgb(80, 87, 57); 
-	font-family: Arial; 
-	font-size: 15px; 
-	font-weight: bold; 
-	text-decoration: none; 
-	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
-	
-}
 
-button.load{
-	width: 100%;
-	height: 53px;
-	box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px; 
-	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
-	border-radius: 10px; 
-	border: 1px solid rgb(51, 48, 41); 
-	display: inline-block; 
-	cursor: pointer; 
-	color: rgb(80, 87, 57); 
-	font-family: Arial; 
-	font-size: 15px; 
-	font-weight: bold; 
-	text-decoration: none; 
-	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
-}*/

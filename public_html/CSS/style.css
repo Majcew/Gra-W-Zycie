@@ -199,3 +199,14 @@ button.start,button.load,button.options,button.save{
 	
 }
 
+.dead {
+	background-color: #993300;
+	width: 5px;
+	height: 5px;
+}
+
+.live{
+	background-color: #bbdaf7;
+	width: 5px;
+	height: 5px;
+}

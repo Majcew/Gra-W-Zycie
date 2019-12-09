@@ -1,16 +1,13 @@
 var rows = 30;
 var cols = 30;
 
-
 var playing = false;
 
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
 var timer;
-
 var reproductionTime = document.getElementById('interval').value;
-
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {

@@ -2,12 +2,10 @@ var rows;
 var cols;
 
 function rc(){
-
-    initialize();
+    xyz();
     rows= document.getElementById('heightY').value;
     cols = document.getElementById('widthX').value;
-    xyz();
-
+    initialize();
 }
 
 function xyz(){
@@ -16,14 +14,10 @@ function xyz(){
 }
 
 var playing = false;
-
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 var reproductionTime;
 var timer;
-
-
-
 
 function rt(value){
     reproductionTime = document.getElementById('interval').value;

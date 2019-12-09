@@ -1,6 +1,6 @@
+var rows = 30;
+var cols = 30;
 
-var rows = 38;
-var cols = 100;
 
 var playing = false;
 
@@ -9,7 +9,8 @@ var nextGrid = new Array(rows);
 
 var timer;
 
-var reproductionTime = 100;
+var reproductionTime = document.getElementById('interval').value;
+
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
@@ -153,12 +154,12 @@ function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
         playing = false;
-        this.innerHTML = "Continue";
+        this.value = "Continue";
         clearTimeout(timer);
     } else {
         console.log("Continue the game");
         playing = true;
-        this.innerHTML = "Pause";
+        this.value = "Pause";
         play();
     }
 }

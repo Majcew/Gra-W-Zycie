@@ -5,9 +5,16 @@ var playing = false;
 
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
-
+var reproductionTime;
 var timer;
-var reproductionTime = document.getElementById('interval').value;
+
+
+
+
+function rt(value){
+    var rt = document.getElementById('interval').value;
+    reproductionTime = rt;
+}
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {

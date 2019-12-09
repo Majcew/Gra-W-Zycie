@@ -68,9 +68,9 @@
 					<button class="TenMoves">10 Moves</button>
 					<button class="FiftyMoves">50 Moves</button>
 					<br>
-					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="50" min="5" max="100">
+					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="50" min="5" max="100" onchange="rc()">
 					<br>
-					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="50" min="5" max="100">
+					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="50" min="5" max="100" onchange="rc()">
 							
 					<select id="interval" name="interval" onchange="rt(this.value)">
 						<option value="100">1/10 sec</option>

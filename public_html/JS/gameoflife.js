@@ -1,5 +1,19 @@
-var rows = 30;
-var cols = 30;
+var rows;
+var cols;
+
+function rc(){
+
+    initialize();
+    rows= document.getElementById('heightY').value;
+    cols = document.getElementById('widthX').value;
+    xyz();
+
+}
+
+function xyz(){
+    var x = document.getElementById("table");
+    x.remove();
+}
 
 var playing = false;
 
@@ -12,8 +26,7 @@ var timer;
 
 
 function rt(value){
-    var rt = document.getElementById('interval').value;
-    reproductionTime = rt;
+    reproductionTime = document.getElementById('interval').value;
 }
 
 function initializeGrids() {
@@ -57,6 +70,7 @@ function createTable() {
         console.error("Problem: No div for the drid table!");
     }
     var table = document.createElement("table");
+        table.setAttribute("id", "table");
     
     for (var i = 0; i < rows; i++) {
         var tr = document.createElement("tr");

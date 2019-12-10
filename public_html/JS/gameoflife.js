@@ -121,6 +121,22 @@ function setupControlButtons() {
     // button to set random initial state
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
+
+        // button to start
+        var oneStep = document.getElementById('oneMove');
+        oneStep.onclick = step;
+        
+        // button to clear
+        var fiveSteps = document.getElementById('fiveMoves');
+        fiveSteps.onclick = step;
+        
+        // button to set random initial state
+        var tenSteps = document.getElementById("tenMoves");
+        tenSteps.onclick = step;
+                
+        // button to set random initial state
+        var fiftySteps = document.getElementById("fiftyMoves");
+        fiftySteps.onclick = step;
 }
 
 function randomButtonHandler() {
@@ -161,6 +177,21 @@ function clearButtonHandler() {
     resetGrids;
 }
 
+//run the life game by step
+function step(){
+    console.log(steps);
+    playing = true;
+    if (playing) {
+        timer = setTimeout(play, reproductionTime);
+        
+        for(i=0;i<steps;i++)
+        {    
+            computeNextGen();
+        }
+    }
+    
+}
+
 // start/pause/continue the game
 function startButtonHandler() {
     if (playing) {
@@ -179,7 +210,6 @@ function startButtonHandler() {
 // run the life game
 function play() {
     computeNextGen();
-    
     if (playing) {
         timer = setTimeout(play, reproductionTime);
     }

@@ -3,10 +3,10 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="../JS/gameoflife.js"></script>
+	
 	</head>
 	<body>
-
+		<script src="../JS/gameoflife.js"></script>
 		<div id="MainMenu">
 			<button class="start" type="button" 
 				onclick="document.getElementById('MainGame').style.display = 'inline',
@@ -32,41 +32,23 @@
 		<div id="MainGame">
 			<nav role="navigation">
 				<div id="menuToggle">
-				<!--
-				A fake / hidden checkbox is used as click reciever,
-				so you can use the :checked selector on it.
-				-->
 					<input type="checkbox" />
-				
-				<!--
-				Some spans to act as a hamburger.
-				
-				They are acting like a real hamburger,
-				not that McDonalds stuff.
-				-->
 					<span></span>
 					<span></span>
 					<span></span>
-				
-				<!--
-				Too bad the menu has to be inside of the button
-				but hey, it's pure CSS magic.
-				-->
 					<ul id="menu">
 						<li><button class="load">LOAD</button></li>
 						<li><button class="save">SAVE</button></li>
-						<li><button class="options" type="button" onclick="document.getElementById('MainGame').style.display = 'none',
-									document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
+						<li><button class="options" type="button" onclick="document.getElementById('MainGame').style.display = 'none', document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
 					</ul>
 				</div>
 			</nav>
 			<div id="gridContainer"></div>
-			<form>
 				<div id="FooterOptions">
-					<button id="oneMove" class="OneMove" value="1" onclick="stepButton(this.value)">1 Move</button>
-					<button id="fiveMoves" class="FiveMoves" value="5" onclick="stepButton(this.value)">5 Moves</button>
-					<button id="tenMoves" class="TenMoves" value="10" onclick="stepButton(this.value)">10 Moves</button>
-					<button id="fiftyMoves" class="FiftyMoves" value="50" onclick="stepButton(this.value)">50 Moves</button>
+					<button id="oneMove" class="OneMove" value="1" onclick="stepButton(value)">1 Move</button>
+					<button id="fiveMoves" class="FiveMoves" value="5" onclick="stepButton(value)">5 Moves</button>
+					<button id="tenMoves" class="TenMoves" value="10" onclick="stepButton(value)">10 Moves</button>
+					<button id="fiftyMoves" class="FiftyMoves" value="50" onclick="stepButton(value)">50 Moves</button>
 					<br>
 					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="30" min="5" max="40" onchange="rc()">
 					<br>
@@ -101,9 +83,7 @@
 						  output2.innerHTML = this.value;
 						}
 					</script>
-
 				</div>
-			</form>
 		</div>
 		<div id="MainInstruction">
 			<p>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</p>

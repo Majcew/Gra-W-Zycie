@@ -1,5 +1,5 @@
-var rows;
-var cols;
+var rows = 30;
+var cols = 30;
 
 function rc(){
     xyz();
@@ -122,7 +122,7 @@ function setupControlButtons() {
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
 
-        // button to start
+    /*    // button to start
         var oneStep = document.getElementById('oneMove');
         oneStep.onclick = step;
         
@@ -131,12 +131,12 @@ function setupControlButtons() {
         fiveSteps.onclick = step;
         
         // button to set random initial state
-        var tenSteps = document.getElementById('tenMoves');
+        var tenSteps = document.getElementById("tenMoves");
         tenSteps.onclick = step;
                 
         // button to set random initial state
-        var fiftySteps = document.getElementById('fiftyMoves');
-        fiftySteps.onclick = step;
+        var fiftySteps = document.getElementById("fiftyMoves");
+        fiftySteps.onclick = step;*/
 }
 
 function randomButtonHandler() {
@@ -154,9 +154,9 @@ function randomButtonHandler() {
     }
 }
 
-// czysci plansze
+// clear the grid
 function clearButtonHandler() {
-    console.log("Czysci gre, zatrzymuje funkcje playing, czysci siatke")
+    console.log("Clear the game: stop playing, clear the grid");
     
     playing = false;
     var startButton = document.getElementById('start');
@@ -164,6 +164,8 @@ function clearButtonHandler() {
     clearTimeout(timer);
     
     var cellsList = document.getElementsByClassName("live");
+    // convert to array first, otherwise, you're working on a live node list
+    // and the update doesn't work!
     var cells = [];
     for (var i = 0; i < cellsList.length; i++) {
         cells.push(cellsList[i]);
@@ -174,23 +176,34 @@ function clearButtonHandler() {
     }
     resetGrids;
 }
+var step_value;
 
-// krok po kroku
-function step(){
-    console.log(steps);
-    playing = true;
-    if (playing) {
-        timer = setTimeout(play, reproductionTime);
+
+//run the life game by step
+function stepButton(val){
+    step_value = val;
+    if (!playing) {
+        console.log("Continue the game");
+        playing = true;
+
+        for(var i=0;i<val;i++)
+        {
         
-        for(i=0;i<steps;i++)
-        {    
-            computeNextGen();
+            step();
         }
+
     }
-    
 }
 
-// start/pause/continue
+function step(){  
+    var val = step_value;
+    computeNextGen();
+    if (playing) {
+        timer = setTimeout(step,reproductionTime*val);
+    }
+}
+
+// start/pause/continue the game
 function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
@@ -205,7 +218,7 @@ function startButtonHandler() {
     }
 }
 
-//start gry
+// run the life game
 function play() {
     computeNextGen();
     if (playing) {
@@ -249,7 +262,6 @@ function applyRules(row, col) {
         }
     }
     
-// zliczanie sasiadow
 function countNeighbors(row, col) {
     var count = 0;
     if (row-1 >= 0) {
@@ -279,5 +291,5 @@ function countNeighbors(row, col) {
     return count;
 }
 
-// Startuje wszystko
+// Start everything
 window.onload = initialize;

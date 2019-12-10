@@ -131,11 +131,11 @@ function setupControlButtons() {
         fiveSteps.onclick = step;
         
         // button to set random initial state
-        var tenSteps = document.getElementById("tenMoves");
+        var tenSteps = document.getElementById('tenMoves');
         tenSteps.onclick = step;
                 
         // button to set random initial state
-        var fiftySteps = document.getElementById("fiftyMoves");
+        var fiftySteps = document.getElementById('fiftyMoves');
         fiftySteps.onclick = step;
 }
 
@@ -154,9 +154,9 @@ function randomButtonHandler() {
     }
 }
 
-// clear the grid
+// czysci plansze
 function clearButtonHandler() {
-    console.log("Clear the game: stop playing, clear the grid");
+    console.log("Czysci gre, zatrzymuje funkcje playing, czysci siatke")
     
     playing = false;
     var startButton = document.getElementById('start');
@@ -164,8 +164,6 @@ function clearButtonHandler() {
     clearTimeout(timer);
     
     var cellsList = document.getElementsByClassName("live");
-    // convert to array first, otherwise, you're working on a live node list
-    // and the update doesn't work!
     var cells = [];
     for (var i = 0; i < cellsList.length; i++) {
         cells.push(cellsList[i]);
@@ -177,7 +175,7 @@ function clearButtonHandler() {
     resetGrids;
 }
 
-//run the life game by step
+// krok po kroku
 function step(){
     console.log(steps);
     playing = true;
@@ -192,7 +190,7 @@ function step(){
     
 }
 
-// start/pause/continue the game
+// start/pause/continue
 function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
@@ -207,7 +205,7 @@ function startButtonHandler() {
     }
 }
 
-// run the life game
+//start gry
 function play() {
     computeNextGen();
     if (playing) {
@@ -251,6 +249,7 @@ function applyRules(row, col) {
         }
     }
     
+// zliczanie sasiadow
 function countNeighbors(row, col) {
     var count = 0;
     if (row-1 >= 0) {
@@ -280,5 +279,5 @@ function countNeighbors(row, col) {
     return count;
 }
 
-// Start everything
+// Startuje wszystko
 window.onload = initialize;

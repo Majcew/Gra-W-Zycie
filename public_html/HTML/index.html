@@ -63,14 +63,14 @@
 			<div id="gridContainer"></div>
 			<form>
 				<div id="FooterOptions">
-					<button id="oneMove" class="OneMove">1 Move</button>
-					<button id="fiveMoves" class="FiveMoves">5 Moves</button>
-					<button id="tenMoves" class="TenMoves">10 Moves</button>
-					<button id="fiftyMoves" class="FiftyMoves">50 Moves</button>
+					<button id="oneMove" class="OneMove" value="1" onclick="stepButton(this.value)">1 Move</button>
+					<button id="fiveMoves" class="FiveMoves" value="5" onclick="stepButton(this.value)">5 Moves</button>
+					<button id="tenMoves" class="TenMoves" value="10" onclick="stepButton(this.value)">10 Moves</button>
+					<button id="fiftyMoves" class="FiftyMoves" value="50" onclick="stepButton(this.value)">50 Moves</button>
 					<br>
-					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="50" min="5" max="100" onchange="rc()">
+					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="30" min="5" max="40" onchange="rc()">
 					<br>
-					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="50" min="5" max="100" onchange="rc()">
+					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="30" min="5" max="40" onchange="rc()">
 							
 					<select id="interval" name="interval" onchange="rt(this.value)">
 						<option value="100">1/10 sec</option>

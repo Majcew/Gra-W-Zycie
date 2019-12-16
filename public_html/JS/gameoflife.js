@@ -1,9 +1,87 @@
 window.addEventListener('load', function() {
+    sizeWindow(window.innerWidth, window.innerHeight);
     initialize();
+    sizeofButtons(window.innerHeight);
+
+    var slider1 = document.getElementById("heightY");
+	var output1 = document.getElementById("valuesY");
+	output1.innerHTML = slider1.value;
+
+	slider1.oninput = function() {
+		output1.innerHTML = this.value;
+	}
+						
+	var slider2 = document.getElementById("widthX");
+	var output2 = document.getElementById("valuesX");
+	output2.innerHTML = slider2.value;
+
+	slider2.oninput = function() {
+		output2.innerHTML = this.value;
+    }
+
+
+    
 }, true);
 
-var rows = 30;
-var cols = 30;
+function sizeofButtons(par){
+    var prametr = par;
+    console.log(Math.floor(prametr/4)+'px');
+    document.getElementById("startMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
+    document.getElementById("loadMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
+    document.getElementById("optionsMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
+    document.getElementById("instructionMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
+}
+
+
+function startButton(){
+    document.getElementById('MainGame').style.display = 'inline';
+    document.getElementById('MainOptions').style.display = 'none';
+    document.getElementById('MainInstruction').style.display = 'none';
+    document.getElementById('MainLoad').style.display = 'none';
+    document.getElementById('MainMenu').style.display= 'none';
+}
+
+function optionsButton(){
+    document.getElementById('MainOptions').style.display = 'inline';
+    document.getElementById('MainGame').style.display = 'none';
+    document.getElementById('MainInstruction').style.display = 'none';
+    document.getElementById('MainLoad').style.display = 'none';
+}
+
+function quitButton(){
+
+}
+
+function instructionButton(){
+    document.getElementById('MainInstruction').style.display = 'inline';
+    document.getElementById('MainGame').style.display = 'none';
+    document.getElementById('MainOptions').style.display = 'none';
+    document.getElementById('MainLoad').style.display = 'none';
+}
+
+function loadButton(){
+    document.getElementById('MainLoad').style.display = 'inline';
+    document.getElementById('MainGame').style.display = 'none';
+    document.getElementById('MainOptions').style.display = 'none';
+    document.getElementById('MainInstruction').style.display = 'none';
+}
+
+function saveButton(){
+
+}
+
+var rows = 15;
+var cols = 15;
+
+function sizeWindow(x,y){
+    console.log("y:"+(Math.floor(y/19)-7)+" x:"+Math.floor(x/19));
+    document.getElementById('heightY').max = Math.floor(y/19)-7;
+    document.getElementById('widthX').max = Math.floor(x/19);
+    document.getElementById('heightY').value = rows;
+    document.getElementById('widthX').value = cols;
+}
+
+
 
 function rc() {
     xyz();

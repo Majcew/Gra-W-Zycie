@@ -8,25 +8,10 @@
 	<body>
 		<script src="../JS/gameoflife.js"></script>
 		<div id="MainMenu">
-			<button class="start" type="button" 
-				onclick="document.getElementById('MainGame').style.display = 'inline',
-				document.getElementById('MainOptions').style.display = 'none',
-				document.getElementById('MainInstruction').style.display = 'none',
-				document.getElementById('MainLoad').style.display = 'none'"> START </button>
-			<button class="options" type="button" 
-				onclick="document.getElementById('MainOptions').style.display = 'inline', 
-				document.getElementById('MainGame').style.display = 'none',
-				document.getElementById('MainInstruction').style.display = 'none',
-				document.getElementById('MainLoad').style.display = 'none'"> OPTIONS </button>
-			<button class="load" type="button" 
-				onclick="document.getElementById('MainInstruction').style.display = 'inline', document.getElementById('MainGame').style.display = 'none',
-				document.getElementById('MainOptions').style.display = 'none',
-				document.getElementById('MainLoad').style.display = 'none'"> INSTRUCTION </button>
-			<button class="load" type="button" 
-				onclick="document.getElementById('MainLoad').style.display = 'inline',
-				document.getElementById('MainGame').style.display = 'none',
-				document.getElementById('MainOptions').style.display = 'none',
-				document.getElementById('MainInstruction').style.display = 'none'"> LOAD </button>
+			<button class="start" id="startMenu" type="button" onclick="startButton()"> START </button>
+			<button class="options" id="optionsMenu" type="button" onclick="optionsButton()"> OPTIONS </button>
+			<button class="instruction" id="instructionMenu" type="button" onclick="instructionButton()"> INSTRUCTION </button>
+			<button class="load" id="loadMenu" type="button" onclick="loadButton()"> LOAD </button>
 		</div>
 
 		<div id="MainGame">
@@ -37,9 +22,9 @@
 					<span></span>
 					<span></span>
 					<ul id="menu">
-						<li><button class="load">LOAD</button></li>
-						<li><button class="save">SAVE</button></li>
-						<li><button class="options" type="button" onclick="document.getElementById('MainGame').style.display = 'none', document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
+						<li><button class="loadMenu">LOAD</button></li>
+						<li><button class="saveMenu">SAVE</button></li>
+						<li><button class="optionsMenu" type="button" onclick="document.getElementById('MainGame').style.display = 'none', document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
 					</ul>
 				</div>
 			</nav>
@@ -50,9 +35,13 @@
 					<button id="tenMoves" class="TenMoves" value="10" onclick="stepButton(value)">10 Moves</button>
 					<button id="fiftyMoves" class="FiftyMoves" value="50" onclick="stepButton(value)">50 Moves</button>
 					<br>
-					Height:<span id="valuesY"></span> <input class="slider1" type="range" id="heightY" value="30" min="5" max="40" onchange="rc()">
-					<br>
-					Width:<span id="valuesX"></span> <input class="slider2" type="range" id="widthX" value="30" min="5" max="40" onchange="rc()">
+					Height:
+						<span id="valuesY"></span> 
+						<input class="slider1" type="range" id="heightY" min="5" onchange="rc()">
+						<br>
+					Width:
+						<span id="valuesX"></span> 
+						<input class="slider2" type="range" id="widthX" min="5" onchange="rc()">
 							
 					<select id="interval" name="interval" onchange="rt(this.value)">
 						<option value="100">1/10 sec</option>
@@ -66,23 +55,6 @@
 					<input id="clear" type="button" value="CLEAR"> 
 					<input id="random" type="button" value="RANDOM"> 
 					<br>
-					<script>
-						var slider1 = document.getElementById("heightY");
-						var output1 = document.getElementById("valuesY");
-						output1.innerHTML = slider1.value;
-
-						slider1.oninput = function() {
-						  output1.innerHTML = this.value;
-						}
-						
-						var slider2 = document.getElementById("widthX");
-						var output2 = document.getElementById("valuesX");
-						output2.innerHTML = slider2.value;
-
-						slider2.oninput = function() {
-						  output2.innerHTML = this.value;
-						}
-					</script>
 				</div>
 		</div>
 		<div id="MainInstruction">
@@ -91,7 +63,7 @@
 			<p>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</p>
 		</div>
 		<div id="MainOptions">
-
+			
 		</div>
 		<div id="MainLoad">
 

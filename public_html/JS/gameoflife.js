@@ -66,9 +66,38 @@ function loadButton(){
     document.getElementById('MainInstruction').style.display = 'none';
 }
 
-function saveButton(){
-
+function saveButton(table){
+    var data = [];
+    for (var i=0; i<table.rows.length; i++) {
+        var rawData = {}
+        for (var j=0; j<table.rows[i].cells.length; j++) {
+            let id = table.rows[i].cells[j].id;
+            let state = table.rows[i].cells[j].className;
+            rawData[j] =
+            {
+                "id":id,
+                "stan":state
+            };
+            
+        }
+        data.push(rawData);
+    }
+        download("save",data)
+    console.log(JSON.stringify(data));
 }
+function download(filename, text) {
+    text = JSON.stringify(text)
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
 
 var rows = 15;
 var cols = 15;

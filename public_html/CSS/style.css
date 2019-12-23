@@ -38,6 +38,11 @@ body {
 	top:1px;
 }
 
+#bottomButtons{
+	/*margin-left: 1%;*/
+}
+
+
 /*==============================================================*/
 a
 {
@@ -206,7 +211,6 @@ button.start, button.load, button.options, button.instruction{
 	font-weight: bold; 
 	text-decoration: none; 
 	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
-	
 }
 
 .dead {

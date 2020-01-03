@@ -82,22 +82,17 @@ function saveButton(table){
         }
         data.push(rawData);
     }
-        download("save",data)
+    AddToServer(data)
     console.log(JSON.stringify(data));
 }
-function download(filename, text) {
-    text = JSON.stringify(text)
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-  
-    element.style.display = 'none';
-    document.body.appendChild(element);
-  
-    element.click();
-  
-    document.body.removeChild(element);
-  }
+function AddToServer(text) {
+    var request = new XMLHttpRequest();
+    request.open("POST", "server.php", true);
+    request.send(JSON.stringify({
+        polecenie: 2,
+        dane : text
+    }));
+}
 
 var rows = 15;
 var cols = 15;

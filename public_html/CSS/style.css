@@ -7,13 +7,13 @@ body {
 
 #FooterOptions {
 	position: fixed;
-    height: 90px;
+    height: auto;
     width: 100%;
     background: #993300;
     bottom: 0;
 }
 
-#FooterOptions button {
+#FooterOptions button{
 	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
 	background-color:#79bbff;
@@ -174,4 +174,8 @@ text-shadow: 2px 2px 11px #000000;
 	background-color: #bbdaf7;
 	width: 15px;
 	height: 15px;
+}
+
+#OneMove {
+	background-color: #000000;
 }

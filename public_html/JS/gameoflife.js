@@ -28,7 +28,6 @@ function sizeofButtons(par){
     console.log(Math.floor(prametr/4)+'px');
     document.getElementById("startMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
     document.getElementById("loadMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
-    document.getElementById("optionsMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
     document.getElementById("instructionMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
 }
 

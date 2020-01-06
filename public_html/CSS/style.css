@@ -113,7 +113,7 @@ a:hover
 }
 
 
-button.start, button.load, button.options, button.instruction{
+button.start, button.load, button.instruction{
 	width: 100%;
 	box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px; 
 	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 

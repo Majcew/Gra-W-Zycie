@@ -82,15 +82,30 @@ function saveButton(table){
         }
         data.push(rawData);
     }
-    AddToServer(data)
+    AddToServer(data,rows,cols)
     console.log(JSON.stringify(data));
 }
-function AddToServer(text) {
+function loadTable(){
     var request = new XMLHttpRequest();
-    request.open("POST", "server.php", true);
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            LoadGridAndPopulate(response);
+        }
+    }
+    request.open("POST", "../JS/server.php", true);
+    request.send(JSON.stringify({
+        polecenie: 1
+    }));
+}
+function AddToServer(text,row,col) {
+    var request = new XMLHttpRequest();
+    request.open("POST", "../JS/server.php", true);
     request.send(JSON.stringify({
         polecenie: 2,
-        dane : text
+        dane : text,
+        row : row,
+        col : col
     }));
 }
 
@@ -166,7 +181,7 @@ function createTable() {
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
-        console.error("Problem: No div for the drid table!");
+        console.error("Problem: No div for the grid table!");
     }
     var table = document.createElement("table");
     table.setAttribute("id", "table");
@@ -240,6 +255,45 @@ function randomButtonHandler() {
         }
     }
 }
+function LoadGridAndPopulate(value) {
+    xyz();
+    cols = value.col;
+    rows = value.row;
+    initializeGrids();
+    resetGrids();
+    var gridContainer = document.getElementById('gridContainer');
+    if (!gridContainer) {
+        // Throw error
+        console.error("Problem: No div for the grid table!");
+    }
+    var table = document.createElement("table");
+    table.setAttribute("id", "table");
+
+    for (var i = 0; i < value.row; i++) {
+        var tr = document.createElement("tr");
+        for (var j = 0; j < value.col; j++) { 
+            var cell = document.createElement("td");
+            cell.setAttribute("id", i + "_" + j);
+            cell.setAttribute("class", "dead");
+            cell.onclick = cellClickHandler;
+            tr.appendChild(cell);
+        }
+        table.appendChild(tr);
+    }
+    gridContainer.appendChild(table);
+    if (playing) return;
+    clearButtonHandler();
+    for (var i = 0; i < value.row; i++) {
+        for (var j = 0; j < value.col; j++) {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", value.dane[i][j].stan);
+                if(value.dane[i][j].stan == "live")
+                grid[i][j] = 1;
+                else
+                grid[i][j] = 0;
+        }
+    }
+}
 
 // clear the grid
 function clearButtonHandler() {
@@ -261,7 +315,7 @@ function clearButtonHandler() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].setAttribute("class", "dead");
     }
-    resetGrids;
+    resetGrids();
 }
 
 //run the life game by step

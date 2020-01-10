@@ -2,6 +2,9 @@ window.addEventListener('load', function() {
     sizeWindow(window.innerWidth, window.innerHeight);
     initialize();
     sizeofButtons(window.innerHeight);
+    loadFiles();
+
+
 
     var slider1 = document.getElementById("heightY");
 	var output1 = document.getElementById("valuesY");
@@ -23,12 +26,13 @@ window.addEventListener('load', function() {
     
 }, true);
 
+/* ******************************************** MODUŁY ODPOWIEDZIALNE ZA WYGLĄD I FUNKCJONALNOŚĆ ******************************************** */
+
 function sizeofButtons(par){
     var prametr = par;
-    console.log(Math.floor(prametr/4)+'px');
+    /*console.log(Math.floor(prametr/4)+'px');*/
     document.getElementById("startMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
     document.getElementById("loadMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
-    document.getElementById("optionsMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
     document.getElementById("instructionMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
 }
 
@@ -66,15 +70,81 @@ function loadButton(){
     document.getElementById('MainInstruction').style.display = 'none';
 }
 
-function saveButton(){
-
+function saveButton(table){
+    var data = [];
+    for (var i=0; i<table.rows.length; i++) {
+        var rawData = {}
+        for (var j=0; j<table.rows[i].cells.length; j++) {
+            let id = table.rows[i].cells[j].id;
+            let state = table.rows[i].cells[j].className;
+            rawData[j] =
+            {
+                "id":id,
+                "stan":state
+            };
+            
+        }
+        data.push(rawData);
+    }
+    AddToServer(data,rows,cols)
+    /*console.log(JSON.stringify(data));*/
+    console.log("zapisano");
 }
 
+function AddToServer(text,row,col) {
+    var request = new XMLHttpRequest();
+
+    request.open("POST", "../PHP/server.php", true);
+    request.send(JSON.stringify({
+        polecenie: 2,
+        dane : text,
+        row : row,
+        col : col
+    }));
+}
+
+function loadTable(){
+    if(document.getElementById('plik').value){
+        var request = new XMLHttpRequest();
+        var plik = document.getElementById('plik').value;
+        console.log("1:"+plik);
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                LoadGridAndPopulate(this.responseText);
+            }
+        }
+        request.open("POST", "../PHP/server.php", true);
+        request.send(JSON.stringify({
+            polecenie: 1,
+            plik: plik+".data"
+        }));
+        console.log("wczytano");
+    }
+}
+
+function loadFiles(){
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            /*console.log(this.responseText);*/
+            document.getElementById("pliki").innerHTML = this.responseText;
+        }
+    };
+
+    request.open("POST", "../PHP/server.php", true);
+    request.send(JSON.stringify({
+        polecenie: 3
+    }));
+}
+
+/* ******************************************** MODUŁY ODPOWIEDZIALNE ZA DZIAŁANIE GAME OF LIFE ******************************************** */
 var rows = 15;
 var cols = 15;
 
 function sizeWindow(x,y){
-    console.log("y:"+(Math.floor(y/19)-7)+" x:"+Math.floor(x/19));
+    /*console.log("y:"+(Math.floor(y/19)-7)+" x:"+Math.floor(x/19));*/
     document.getElementById('heightY').max = Math.floor(y/19)-7;
     document.getElementById('widthX').max = Math.floor(x/19);
     document.getElementById('heightY').value = rows;
@@ -142,7 +212,7 @@ function createTable() {
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
-        console.error("Problem: No div for the drid table!");
+        console.error("Problem: No div for the grid table!");
     }
     var table = document.createElement("table");
     table.setAttribute("id", "table");
@@ -216,6 +286,45 @@ function randomButtonHandler() {
         }
     }
 }
+function LoadGridAndPopulate(value) {
+    xyz();
+    cols = value.col;
+    rows = value.row;
+    initializeGrids();
+    resetGrids();
+    var gridContainer = document.getElementById('gridContainer');
+    if (!gridContainer) {
+        // Throw error
+        console.error("Problem: No div for the grid table!");
+    }
+    var table = document.createElement("table");
+    table.setAttribute("id", "table");
+
+    for (var i = 0; i < value.row; i++) {
+        var tr = document.createElement("tr");
+        for (var j = 0; j < value.col; j++) { 
+            var cell = document.createElement("td");
+            cell.setAttribute("id", i + "_" + j);
+            cell.setAttribute("class", "dead");
+            cell.onclick = cellClickHandler;
+            tr.appendChild(cell);
+        }
+        table.appendChild(tr);
+    }
+    gridContainer.appendChild(table);
+    if (playing) return;
+    clearButtonHandler();
+    for (var i = 0; i < value.row; i++) {
+        for (var j = 0; j < value.col; j++) {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", value.dane[i][j].stan);
+                if(value.dane[i][j].stan == "live")
+                grid[i][j] = 1;
+                else
+                grid[i][j] = 0;
+        }
+    }
+}
 
 // clear the grid
 function clearButtonHandler() {
@@ -237,7 +346,7 @@ function clearButtonHandler() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].setAttribute("class", "dead");
     }
-    resetGrids;
+    resetGrids();
 }
 
 //run the life game by step

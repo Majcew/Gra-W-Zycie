@@ -4,30 +4,37 @@
 	<link rel="stylesheet" type="text/css" href="../CSS/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Gra w życie Krystian Barczak, Krzysztof Dragon, Szymon Babula, Aleksander Boronowski</title>
-	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	</head>
 	<body>
 		<script src="../JS/gameoflife.js"></script>
 		<div id="MainMenu">
 			<button class="start" id="startMenu" type="button" onclick="startButton()"> START </button>
-			<button class="options" id="optionsMenu" type="button" onclick="optionsButton()"> OPTIONS </button>
 			<button class="instruction" id="instructionMenu" type="button" onclick="instructionButton()"> INSTRUCTION </button>
 			<button class="load" id="loadMenu" type="button" onclick="loadButton()"> LOAD </button>
 		</div>
 
 		<div id="MainGame">
 			<nav role="navigation">
-				<div id="menuToggle">
-					<input type="checkbox" />
-					<span></span>
-					<span></span>
-					<span></span>
-					<ul id="menu">
-						<li><button class="loadMenu">LOAD</button></li>
-						<li><button class="saveMenu">SAVE</button></li>
-						<li><button class="optionsMenu" type="button" onclick="document.getElementById('MainGame').style.display = 'none', document.getElementById('MainMenu').style.display = 'inline'">QUIT</button></li>
-					</ul>
+				<span id="optionsSpan">Options</span>
+				<div class="ps" style="display: none" id="menuToggle">
+						<button class="loadMenu" onclick="loadTable()">LOAD</button><br>
+						<input id="plik" list="pliki">
+							<datalist id="pliki">
+
+							</datalist><br>
+						<button class="saveMenu" onclick="saveButton(table);loadFiles();">SAVE</button><br>
+						<button class="optionsMenu" type="button" 
+							onclick="document.getElementById('MainGame').style.display = 'none', 
+							document.getElementById('MainMenu').style.display = 'inline',
+							document.getElementById('menuToggle').style.display = 'none'">QUIT</button>
+						<br>
 				</div>
+				<script>
+					$("span").click(function () {
+					$(".ps").toggle("slow");
+					});
+				</script>
 			</nav>
 			<div id="gridContainer"></div>
 				<div id="FooterOptions">
@@ -60,7 +67,7 @@
 				</div>
 				</div>
 		</div>
-		<div id="MainInstruction">
+		<div id="MainInstruction" class="MainInstruction">
 			<p>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</p>
 			
 			<p>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</p>

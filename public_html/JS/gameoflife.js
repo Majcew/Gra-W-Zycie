@@ -110,8 +110,8 @@ function loadTable(){
         console.log("1:"+plik);
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-                LoadGridAndPopulate(this.responseText);
+                var response = JSON.parse(this.responseText);
+                LoadGridAndPopulate(response);
             }
         }
         request.open("POST", "../PHP/server.php", true);

@@ -38,8 +38,21 @@ body {
 	top:1px;
 }
 
-#bottomButtons{
-	/*margin-left: 1%;*/
+#FooterOptions #bottomButtons input{
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding: 6px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
 }
 
 
@@ -126,7 +139,6 @@ button.start, button.load, button.instruction{
 	font-size: 15px; 
 	font-weight: bold; 
 	text-decoration: none; 
-	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
 }
 
 button.loadMenu, button.saveMenu, button.optionsMenu{
@@ -142,12 +154,27 @@ button.loadMenu, button.saveMenu, button.optionsMenu{
 	font-size: 18px; 
 	font-weight: bold; 
 	text-decoration: none; 
-	text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+}
+
+input[name="pliki"]{
+	text-align: center;
+	display: inline-block; 
+	color: rgb(80, 87, 57); 
+	font-family: Arial; 
+	font-size: 18px; 
+	font-weight: bold; 
+	text-decoration: none; 
+	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
+	border-radius: 10px; 
+	border: 1px solid rgb(51, 48, 41); 
 }
 
 @media only screen and (max-width: 1920px){
+	input[name="pliki"] {
+		width: 35%;
+	  }
 	button.loadMenu,button.saveMenu,button.optionsMenu{
-		width: 10%;
+		width: 35%;
 	}
 	.MainInstruction{
 		font-size: 20px;
@@ -155,8 +182,11 @@ button.loadMenu, button.saveMenu, button.optionsMenu{
 }
 
 @media only screen and (max-width: 720px){
+	input[name="pliki"] {
+		width: 65%;
+	  }
 	button.loadMenu,button.saveMenu,button.optionsMenu{
-		width: 40%;
+		width: 65%;
 	}
 	.MainInstruction{
 		font-size: 15px;
@@ -164,6 +194,9 @@ button.loadMenu, button.saveMenu, button.optionsMenu{
 }
 
 @media only screen and (max-width: 320px){
+	input[name="pliki"] {
+		width: 90%;
+	  }
 	button.loadMenu,button.saveMenu,button.optionsMenu{
 		width: 90%;
 	}

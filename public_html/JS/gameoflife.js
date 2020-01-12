@@ -4,8 +4,6 @@ window.addEventListener('load', function() {
     sizeofButtons(window.innerHeight);
     loadFiles();
 
-
-
     var slider1 = document.getElementById("heightY");
 	var output1 = document.getElementById("valuesY");
 	output1.innerHTML = slider1.value;
@@ -21,9 +19,6 @@ window.addEventListener('load', function() {
 	slider2.oninput = function() {
 		output2.innerHTML = this.value;
     }
-
-
-    
 }, true);
 
 /* ******************************************** MODUŁY ODPOWIEDZIALNE ZA WYGLĄD I FUNKCJONALNOŚĆ ******************************************** */
@@ -32,10 +27,8 @@ function sizeofButtons(par){
     var prametr = par;
     /*console.log(Math.floor(prametr/4)+'px');*/
     document.getElementById("startMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
-    document.getElementById("loadMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
     document.getElementById("instructionMenu").setAttribute("style","height:"+Math.floor(prametr/4)+'px');
 }
-
 
 function startButton(){
     document.getElementById('MainGame').style.display = 'inline';
@@ -50,10 +43,6 @@ function optionsButton(){
     document.getElementById('MainGame').style.display = 'none';
     document.getElementById('MainInstruction').style.display = 'none';
     document.getElementById('MainLoad').style.display = 'none';
-}
-
-function quitButton(){
-
 }
 
 function instructionButton(){
@@ -88,7 +77,7 @@ function saveButton(table){
     }
     AddToServer(data,rows,cols)
     /*console.log(JSON.stringify(data));*/
-    console.log("zapisano");
+    /*console.log("zapisano");*/
 }
 
 function AddToServer(text,row,col) {
@@ -107,11 +96,12 @@ function loadTable(){
     if(document.getElementById('plik').value){
         var request = new XMLHttpRequest();
         var plik = document.getElementById('plik').value;
-        console.log("1:"+plik);
+        /*console.log("1:"+plik);*/
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-                LoadGridAndPopulate(this.responseText);
+                /*console.log(this.responseText);*/
+                var response = JSON.parse(this.responseText);
+                LoadGridAndPopulate(response);
             }
         }
         request.open("POST", "../PHP/server.php", true);
@@ -119,13 +109,12 @@ function loadTable(){
             polecenie: 1,
             plik: plik+".data"
         }));
-        console.log("wczytano");
+        /*console.log("wczytano");*/
     }
 }
 
 function loadFiles(){
     var request = new XMLHttpRequest();
-
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             /*console.log(this.responseText);*/
@@ -139,6 +128,15 @@ function loadFiles(){
     }));
 }
 
+function loadMenuButton(){
+    if(document.getElementById("pliki").value != '')
+    {
+        document.getElementById("loadMenuButton").style.display = 'inline';
+    }else{
+        document.getElementById("loadMenuButton").style.display = 'none';
+    }
+}
+
 /* ******************************************** MODUŁY ODPOWIEDZIALNE ZA DZIAŁANIE GAME OF LIFE ******************************************** */
 var rows = 15;
 var cols = 15;
@@ -150,8 +148,6 @@ function sizeWindow(x,y){
     document.getElementById('heightY').value = rows;
     document.getElementById('widthX').value = cols;
 }
-
-
 
 function rc() {
     xyz();
@@ -328,7 +324,7 @@ function LoadGridAndPopulate(value) {
 
 // clear the grid
 function clearButtonHandler() {
-    console.log("Clear the game: stop playing, clear the grid");
+    /*console.log("Clear the game: stop playing, clear the grid");*/
 
     playing = false;
     var startButton = document.getElementById('start');
@@ -359,12 +355,12 @@ function stepButton(val) {
 // start/pause/continue the game
 function startButtonHandler() {
     if (playing) {
-        console.log("Pause the game");
+        /*console.log("Pause the game");*/
         playing = false;
         this.value = "Continue";
         clearTimeout(timer);
     } else {
-        console.log("Continue the game");
+       /* console.log("Continue the game");*/
         playing = true;
         this.value = "Pause";
         play();

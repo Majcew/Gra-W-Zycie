@@ -11,18 +11,17 @@
 		<div id="MainMenu">
 			<button class="start" id="startMenu" type="button" onclick="startButton()"> START </button>
 			<button class="instruction" id="instructionMenu" type="button" onclick="instructionButton()"> INSTRUCTION </button>
-			<button class="load" id="loadMenu" type="button" onclick="loadButton()"> LOAD </button>
-		</div>
+			</div>
 
 		<div id="MainGame">
 			<nav role="navigation">
 				<span id="optionsSpan">Options</span>
 				<div class="ps" style="display: none" id="menuToggle">
-						<button class="loadMenu" onclick="loadTable()">LOAD</button><br>
-						<input id="plik" list="pliki">
-							<datalist id="pliki">
-
-							</datalist><br>
+					<button id="loadMenuButton" class="loadMenu" onclick="loadTable()" style="display: none;">LOAD</button><br>
+					<input type="text" id="plik" list="pliki" name="pliki" onchange="loadMenuButton()">
+						<datalist id="pliki">
+							<option value=""></option>
+						</datalist><br>
 						<button class="saveMenu" onclick="saveButton(table);loadFiles();">SAVE</button><br>
 						<button class="optionsMenu" type="button" 
 							onclick="document.getElementById('MainGame').style.display = 'none', 

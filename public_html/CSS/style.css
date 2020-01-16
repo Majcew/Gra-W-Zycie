@@ -1,6 +1,6 @@
 body {
 	background-color: #333;
-	    padding: 0;
+	padding: 0;
     margin: 0;
 }
 
@@ -13,8 +13,46 @@ body {
     bottom: 0;
 }
 
-#FooterOptions button {
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+#Label{
+	text-align: right;
+    font-size: 14px;
+    font-family: FreeMono, monospace;
+    width: 52px;
+    display: inline-block;
+}
+
+.slider1,
+.slider2 {
+    -webkit-appearance: none;
+    background: #d3d3d3;
+    height: 10px;
+}
+
+.slider1:hover,
+.slider2:hover {
+    opacity: 1;
+}
+
+.slider1::-webkit-slider-thumb,
+.slider2::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 10px;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    cursor: pointer;
+}
+
+.slider1::-moz-range-thumb,
+.slider2::-moz-range-thumb{
+    width: 15px;
+    height: 10px;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    cursor: pointer;
+    content: "";
+}
+
+#FooterOptions button,#FooterOptions select, #FooterOptions #bottomButtons input{
 	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
 	background-color:#79bbff;
 	border-radius:6px;
@@ -27,38 +65,28 @@ body {
 	font-weight:bold;
 	padding: 6px 8px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
+	margin: 0 0 3px 0;
 }
-#FooterOptions button:hover {
+#FooterOptions button:hover,#FooterOptions select:hover{
 	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
 	background-color:#378de5;
 }
-#FooterOptions button:active {
+#FooterOptions button:active, #FooterOptions  select:active {
 	position:relative;
 	top:1px;
 }
 
-#FooterOptions #bottomButtons input{
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-	background-color:#79bbff;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:14px;
-	font-weight:bold;
-	padding: 6px 8px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
+#bottomButtons{
+	text-align: center;
 }
 
+#FooterOptions .interval{
+	position: initial;
+    margin-bottom: 3px;
+    margin-left: 10px;
+}
 
-/*==============================================================*/
-a
-{
+a{
   text-decoration: none;
   color: #232323;
   transition: color 0.3s ease;

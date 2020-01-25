@@ -207,10 +207,10 @@ input[name="pliki"]{
 	.MainInstruction{
 		font-size: 20px;
 	}
-	.start{
+	#startMenu{
 		font-size: 40px;
 	}
-	.instruction{
+	#instructionMenu{
 		font-size: 40px;
 	}
 }
@@ -225,10 +225,10 @@ input[name="pliki"]{
 	.MainInstruction{
 		font-size: 15px;
 	}
-	.start{
+	#startMenu{
 		font-size: 30px;
 	}
-	.instruction{
+	#instructionMenu{
 		font-size: 30px;
 	}
 }
@@ -243,10 +243,10 @@ input[name="pliki"]{
 	.MainInstruction{
 		font-size: 12px;
 	}
-	.start{
+	#startMenu{
 		font-size: 20px;
 	}
-	.instruction{
+	#instructionMenu{
 		font-size: 20px;
 	}
 }

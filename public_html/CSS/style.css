@@ -207,6 +207,12 @@ input[name="pliki"]{
 	.MainInstruction{
 		font-size: 20px;
 	}
+	.start{
+		font-size: 40px;
+	}
+	.instruction{
+		font-size: 40px;
+	}
 }
 
 @media only screen and (max-width: 720px){
@@ -219,6 +225,12 @@ input[name="pliki"]{
 	.MainInstruction{
 		font-size: 15px;
 	}
+	.start{
+		font-size: 30px;
+	}
+	.instruction{
+		font-size: 30px;
+	}
 }
 
 @media only screen and (max-width: 320px){
@@ -230,6 +242,12 @@ input[name="pliki"]{
 	}
 	.MainInstruction{
 		font-size: 12px;
+	}
+	.start{
+		font-size: 20px;
+	}
+	.instruction{
+		font-size: 20px;
 	}
 }
 

@@ -4,7 +4,6 @@ body {
     margin: 0;
 }
 
-
 #FooterOptions {
 	position: fixed;
     height: auto;
@@ -19,6 +18,26 @@ body {
     font-family: FreeMono, monospace;
     width: 52px;
     display: inline-block;
+}
+
+#LabelRules{
+	text-align: right;
+    font-size: 14px;
+    font-family: FreeMono, monospace;
+    width: 60px;
+    display: inline-block;
+}
+
+#LabelLifeRules{
+	text-align: right;
+    font-size: 14px;
+    font-family: FreeMono, monospace;
+    width: 85px;
+    display: inline-block;
+}
+
+#lifeRules{
+	text-align: center;
 }
 
 .slider1,
@@ -67,6 +86,7 @@ body {
 	text-decoration:none;
 	margin: 0 0 3px 0;
 }
+
 #FooterOptions button:hover,#FooterOptions select:hover{
 	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
 	background-color:#378de5;
@@ -197,6 +217,15 @@ input[name="pliki"]{
 	border: 1px solid rgb(51, 48, 41); 
 }
 
+input[type="radio"] {
+    width: 19px;
+    height: 19px;
+    margin: 0 0 0 5px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+
 @media only screen and (max-width: 1920px){
 	input[name="pliki"] {
 		width: 35%;
@@ -284,14 +313,46 @@ font-variant: normal;
 text-transform: none;
 }
 
-.dead {
+.red {
 	background-color: #993300;
 	width: 15px;
 	height: 15px;
 }
+.green{
+	background-color: #00ff62;
+	width: 15px;
+	height: 15px;
+}
+.yellow{
+	background-color: #fbff00;
+	width: 15px;
+	height: 15px;
+}
+.blue{
+	background-color: #0011ff;
+	width: 15px;
+	height: 15px;
+}
+.cyan{
+	background-color: #00d9ff;
+	width: 15px;
+	height: 15px;
+}
 
-.live{
-	background-color: #bbdaf7;
+.white {
+	background-color: #ffffff;
+	width: 15px;
+	height: 15px;
+}
+
+.black{
+	background-color: #000000;
+	width: 15px;
+	height: 15px;
+}
+
+.pink{
+	background-color: #ff00dd;
 	width: 15px;
 	height: 15px;
 }

@@ -4,6 +4,7 @@ window.addEventListener('load', function() {
     sizeofButtons(window.innerHeight);
     loadFiles();
     loadMenuButton();
+    changeRules();
 
     var slider1 = document.getElementById("heightY");
 	var output1 = document.getElementById("valuesY");
@@ -63,10 +64,12 @@ function saveButton(table){
         for (var j=0; j<table.rows[i].cells.length; j++) {
             let id = table.rows[i].cells[j].id;
             let state = table.rows[i].cells[j].className;
+            let color = table.rows[i].cells[j].color;
             rawData[j] =
             {
                 "id":id,
-                "stan":state
+                "stan":state,
+                "kolor":color
             };
             
         }
@@ -139,7 +142,7 @@ var cols = 15;
 
 function sizeWindow(x,y){
     /*console.log("y:"+(Math.floor(y/19)-7)+" x:"+Math.floor(x/19));*/
-    document.getElementById('heightY').max = Math.floor(y/19)-8;
+    document.getElementById('heightY').max = Math.floor(y/19)-9;
     document.getElementById('widthX').max = Math.floor(x/19);
     document.getElementById('heightY').value = rows;
     document.getElementById('widthX').value = cols;
@@ -159,6 +162,7 @@ function xyz() {
 
 var playing = false;
 var grid = new Array(rows);
+var color = new Array(rows);
 var nextGrid = new Array(rows);
 var reproductionTime;
 var timer;
@@ -178,6 +182,7 @@ function initializeGrids() {
     for (var i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
         nextGrid[i] = new Array(cols);
+        color[i] = new Array(cols);
     }
 }
 
@@ -212,7 +217,7 @@ function createTable() {
         for (var j = 0; j < cols; j++) {
             var cell = document.createElement("td");
             cell.setAttribute("id", i + "_" + j);
-            cell.setAttribute("class", "dead");
+            cell.setAttribute("class", "dead red");
             cell.onclick = cellClickHandler;
             tr.appendChild(cell);
         }
@@ -228,10 +233,10 @@ function cellClickHandler() {
 
     var classes = this.getAttribute("class");
     if (classes.indexOf("live") > -1) {
-        this.setAttribute("class", "dead");
+        this.setAttribute("class", "dead red");
         grid[row][col] = 0;
     } else {
-        this.setAttribute("class", "live");
+        this.setAttribute("class", "live green");
         grid[row][col] = 1;
     }
 
@@ -242,9 +247,9 @@ function updateView() {
         for (var j = 0; j < cols; j++) {
             var cell = document.getElementById(i + "_" + j);
             if (grid[i][j] == 0) {
-                cell.setAttribute("class", "dead");
+                cell.setAttribute("class", "dead red");
             } else {
-                cell.setAttribute("class", "live");
+                cell.setAttribute("class", "live "+color[i][j]);
             }
         }
     }
@@ -264,7 +269,7 @@ function randomButtonHandler() {
             var isLive = Math.round(Math.random());
             if (isLive == 1) {
                 var cell = document.getElementById(i + "_" + j);
-                cell.setAttribute("class", "live");
+                cell.setAttribute("class", "live green");
                 grid[i][j] = 1;
             }
         }
@@ -288,7 +293,7 @@ function LoadGridAndPopulate(value) {
         for (var j = 0; j < value.col; j++) { 
             var cell = document.createElement("td");
             cell.setAttribute("id", i + "_" + j);
-            cell.setAttribute("class", "dead");
+            cell.setAttribute("class", "dead red");
             cell.onclick = cellClickHandler;
             tr.appendChild(cell);
         }
@@ -301,7 +306,7 @@ function LoadGridAndPopulate(value) {
         for (var j = 0; j < value.col; j++) {
                 var cell = document.getElementById(i + "_" + j);
                 cell.setAttribute("class", value.dane[i][j].stan);
-                if(value.dane[i][j].stan == "live")
+                if(value.dane[i][j].stan.includes("live"))
                 grid[i][j] = 1;
                 else
                 grid[i][j] = 0;
@@ -323,7 +328,7 @@ function clearButtonHandler() {
     }
 
     for (var i = 0; i < cells.length; i++) {
-        cells[i].setAttribute("class", "dead");
+        cells[i].setAttribute("class", "dead red");
     }
 
     resetGrids();
@@ -365,23 +370,79 @@ function computeNextGen() {
     copyAndResetGrid();
     updateView();
 }
+var rule = "standard";
+function changeRules(){
+    if(document.getElementById("standardRule").checked){
+        rule = "standard";
+    }
+    
+    if(document.getElementById("customRule").checked){
+        rule = "custom";
+    }
+
+}
 
 function applyRules(row, col) {
-    var numNeighbors = countNeighbors(row, col);
-    if (grid[row][col] == 1) {
-        if (numNeighbors < 2) {
-            nextGrid[row][col] = 0;
-        } else if (numNeighbors == 2 || numNeighbors == 3) {
-            nextGrid[row][col] = 1;
-        } else if (numNeighbors > 3) {
-            nextGrid[row][col] = 0;
+        if(rule === "standard"){
+            var numNeighbors = countNeighbors(row, col);
+            if (grid[row][col] == 1) {
+                if (numNeighbors < 2) {
+                    nextGrid[row][col] = 0;
+                } else if (numNeighbors == 2 || numNeighbors == 3) {
+                    nextGrid[row][col] = 1;
+
+                    if(numNeighbors == 2) {
+                        color[row][col] = "blue";
+                    }
+                    else {
+                        color[row][col] = "cyan";
+                    }
+                } else if (numNeighbors > 3) {
+                    nextGrid[row][col] = 0;
+                }
+            } else if (grid[row][col] == 0) {
+                if (numNeighbors == 3) {
+                    nextGrid[row][col] = 1;
+                    color[row][col] = "yellow";
+                }
+            }
         }
-    } else if (grid[row][col] == 0) {
-        if (numNeighbors == 3) {
-            nextGrid[row][col] = 1;
+    
+        if(rule === "custom"){
+            var numNeighbors = countNeighbors(row, col);
+            if (grid[row][col] == 1) {
+                if (numNeighbors < 1) {
+                    nextGrid[row][col] = 0;
+                } else if (numNeighbors == 1 || numNeighbors == 2 || numNeighbors == 3 || numNeighbors == 4 || numNeighbors == 5) {
+                    nextGrid[row][col] = 1;
+                    if(numNeighbors == 1) {
+                        color[row][col] = "blue";
+                    }
+                    else if(numNeighbors == 2){
+                        color[row][col] = "cyan";
+                    }
+                    else if(numNeighbors == 3){
+                        color[row][col] = "black";
+                    }
+                    else if(numNeighbors == 4){
+                        color[row][col] = "white";
+                    }
+                    else{
+                        color[row][col] = "pink";
+                    }
+                } else if (numNeighbors > 5) {
+                    nextGrid[row][col] = 0;
+                }
+            } else if (grid[row][col] == 0) {
+                if (numNeighbors == 3) {
+                    nextGrid[row][col] = 1;
+                    color[row][col] = "yellow";
+                }
+            }
         }
-    }
 }
+
+
 
 function countNeighbors(row, col) {
     var count = 0;

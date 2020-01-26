@@ -169,7 +169,7 @@ button.start, button.load, button.instruction{
 	text-decoration: none; 
 }
 
-button.loadMenu, button.saveMenu, button.optionsMenu{
+button.loadMenu, button.saveMenu, button.optionsMenu, #menuToggle select{
 	width: 25%;
 	box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px; 
 	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
@@ -201,11 +201,17 @@ input[name="pliki"]{
 	input[name="pliki"] {
 		width: 35%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu{
+	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
 		width: 35%;
 	}
 	.MainInstruction{
 		font-size: 20px;
+	}
+	#startMenu{
+		font-size: 40px;
+	}
+	#instructionMenu{
+		font-size: 40px;
 	}
 }
 
@@ -213,11 +219,17 @@ input[name="pliki"]{
 	input[name="pliki"] {
 		width: 65%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu{
+	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
 		width: 65%;
 	}
 	.MainInstruction{
 		font-size: 15px;
+	}
+	#startMenu{
+		font-size: 30px;
+	}
+	#instructionMenu{
+		font-size: 30px;
 	}
 }
 
@@ -225,11 +237,17 @@ input[name="pliki"]{
 	input[name="pliki"] {
 		width: 90%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu{
+	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
 		width: 90%;
 	}
 	.MainInstruction{
 		font-size: 12px;
+	}
+	#startMenu{
+		font-size: 20px;
+	}
+	#instructionMenu{
+		font-size: 20px;
 	}
 }
 
@@ -266,14 +284,28 @@ font-variant: normal;
 text-transform: none;
 }
 
-.dead {
+.red {
 	background-color: #993300;
 	width: 15px;
 	height: 15px;
 }
-
-.live{
-	background-color: #bbdaf7;
+.green{
+	background-color: #00ff62;
+	width: 15px;
+	height: 15px;
+}
+.yellow{
+	background-color: #fbff00;
+	width: 15px;
+	height: 15px;
+}
+.blue{
+	background-color: #0011ff;
+	width: 15px;
+	height: 15px;
+}
+.cyan{
+	background-color: #00d9ff;
 	width: 15px;
 	height: 15px;
 }

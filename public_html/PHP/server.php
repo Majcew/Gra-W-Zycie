@@ -35,9 +35,9 @@
                 foreach($files as $file){
                     $file = substr($file, 0, -5);
                     if ($wynik === '') {
-                        $wynik = '<option value="'.$file.'">';
+                        $wynik = '<option value="'.$file.'">'.$file.'</option>';
                     } else {
-                        $wynik .= '<option value="'.$file.'">';
+                        $wynik .= '<option value="'.$file.'">'.$file.'</option>';
                     }
                 }
                 print_r($wynik);

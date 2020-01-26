@@ -3,6 +3,7 @@ window.addEventListener('load', function() {
     initialize();
     sizeofButtons(window.innerHeight);
     loadFiles();
+    loadMenuButton();
 
     var slider1 = document.getElementById("heightY");
 	var output1 = document.getElementById("valuesY");
@@ -86,16 +87,16 @@ function AddToServer(text,row,col) {
         row : row,
         col : col
     }));
+    loadMenuButton();
 }
 
 function loadTable(){
-    if(document.getElementById('plik').value){
+    if(document.getElementById('pliki').value){
         var request = new XMLHttpRequest();
-        var plik = document.getElementById('plik').value;
+        var plik = document.getElementById('pliki').value;
         /*console.log("1:"+plik);*/
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                /*console.log(this.responseText);*/
                 var response = JSON.parse(this.responseText);
                 LoadGridAndPopulate(response);
             }
@@ -105,7 +106,6 @@ function loadTable(){
             polecenie: 1,
             plik: plik+".data"
         }));
-        /*console.log("wczytano");*/
     }
 }
 

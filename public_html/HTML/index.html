@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Gra w życie Krystian Barczak, Krzysztof Dragon, Szymon Babula, Aleksander Boronowski</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="shortcut icon" href="favicon.ico">
 	</head>
 	<body>
 		<script src="../JS/gameoflife.js"></script>
@@ -15,13 +16,12 @@
 
 		<div id="MainGame">
 			<nav role="navigation">
-				<span id="optionsSpan">Options</span>
+				<span id="optionsSpan" onclick="loadMenuButton();">Options</span>
 				<div class="ps" style="display: none" id="menuToggle">
-					<button id="loadMenuButton" class="loadMenu" onclick="loadTable()" style="display: none;">LOAD</button><br>
-					<input type="text" id="plik" list="pliki" name="pliki" onchange="loadMenuButton()">
-						<datalist id="pliki">
+					<button id="loadMenuButton" class="loadMenu" onclick="loadTable();" style="display: none;">LOAD</button><br>
+						<select id="pliki" onchange="loadMenuButton();">>
 							<option value=""></option>
-						</datalist><br>
+						</select><br>
 						<button class="saveMenu" onclick="saveButton(table);loadFiles();">SAVE</button><br>
 						<button class="optionsMenu" type="button" 
 							onclick="document.getElementById('MainGame').style.display = 'none', 

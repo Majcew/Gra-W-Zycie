@@ -116,7 +116,7 @@ function loadFiles(){
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            /*console.log(this.responseText);*/
             document.getElementById("pliki").innerHTML = this.responseText;
         }
     };
@@ -383,7 +383,6 @@ function changeRules(){
 }
 
 function applyRules(row, col) {
-
         if(rule === "standard"){
             var numNeighbors = countNeighbors(row, col);
             if (grid[row][col] == 1) {
@@ -440,24 +439,6 @@ function applyRules(row, col) {
                     color[row][col] = "yellow";
                 }
             }
-
-    var numNeighbors = countNeighbors(row, col);
-    if (grid[row][col] == 1) {
-        if (numNeighbors < 2) {
-            nextGrid[row][col] = 0;
-        } else if (numNeighbors == 2 || numNeighbors == 3) {
-            nextGrid[row][col] = 1;
-            if(numNeighbors == 2) color[row][col] = "blue";
-            else color[row][col] = "cyan";
-        } else if (numNeighbors > 3) {
-            nextGrid[row][col] = 0;
-        }
-    } else if (grid[row][col] == 0) {
-        if (numNeighbors == 3) {
-            nextGrid[row][col] = 1;
-            color[row][col] = "yellow";
-        }
-    }
         }
 }
 

@@ -12,6 +12,20 @@ body {
     bottom: 0;
 }
 
+#sizeAndSpeed{
+	text-align: center;
+}
+
+#sizeOfTable{
+	display: inline-block;
+    width: 210px;
+}
+
+#speedOfLife{
+	display: inline-block;
+    width: 125px;
+}
+
 #Label{
 	text-align: right;
     font-size: 14px;
@@ -124,6 +138,7 @@ a:hover
   z-index: 1;
   -webkit-user-select: none;
   user-select: none;
+  text-align: center;
 }
 
 #menu
@@ -189,7 +204,7 @@ button.start, button.load, button.instruction{
 	text-decoration: none; 
 }
 
-button.loadMenu, button.saveMenu, button.optionsMenu, #menuToggle select{
+button.loadMenu, button.saveMenu, button.quitMenu, #menuToggle select{
 	width: 25%;
 	box-shadow: rgb(28, 27, 24) 0px 1px 0px 0px; 
 	background: linear-gradient(rgb(234, 224, 194) 5%, rgb(204, 194, 166) 100%) rgb(234, 224, 194); 
@@ -230,7 +245,7 @@ input[type="radio"] {
 	input[name="pliki"] {
 		width: 35%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
+	button.loadMenu,button.saveMenu,button.quitMenu, #menuToggle select{
 		width: 35%;
 	}
 	.MainInstruction{
@@ -248,7 +263,7 @@ input[type="radio"] {
 	input[name="pliki"] {
 		width: 65%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
+	button.loadMenu,button.saveMenu,button.quitMenu, #menuToggle select{
 		width: 65%;
 	}
 	.MainInstruction{
@@ -266,7 +281,7 @@ input[type="radio"] {
 	input[name="pliki"] {
 		width: 90%;
 	  }
-	button.loadMenu,button.saveMenu,button.optionsMenu, #menuToggle select{
+	button.loadMenu,button.saveMenu,button.quitMenu, #menuToggle select{
 		width: 90%;
 	}
 	.MainInstruction{

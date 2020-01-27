@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Gra w życie Krystian Barczak, Krzysztof Dragon, Szymon Babula, Aleksander Boronowski</title>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="shortcut icon" href="favicon.ico">
 	</head>
 	<body>
 		<script src="../JS/gameoflife.js"></script>
@@ -17,41 +18,38 @@
 			<nav role="navigation">
 				<span id="optionsSpan" onclick="loadMenuButton();">Options</span>
 				<div class="ps" style="display: none" id="menuToggle">
-					<button id="loadMenuButton" class="loadMenu" onclick="loadTable();" style="display: none;">LOAD</button><br>
+					<button id="loadMenuButton" class="loadMenu" type="button" onclick="loadTable();" style="display: none;">LOAD</button>
 						<select id="pliki" onchange="loadMenuButton();">>
 							<option value=""></option>
-						</select><br>
-						<button class="saveMenu" onclick="saveButton(table);loadFiles();">SAVE</button><br>
-						<button class="optionsMenu" type="button" 
-							onclick="document.getElementById('MainGame').style.display = 'none', 
-							document.getElementById('MainMenu').style.display = 'inline',
-							document.getElementById('menuToggle').style.display = 'none'">QUIT</button>
-						<br>
+						</select>
+						<button class="saveMenu" type="button" onclick="saveButton(table);loadFiles();">SAVE</button>
+						<button class="quitMenu" type="button" onclick="quitButton();">QUIT</button>
 				</div>
-				<script>
-					$("span").click(function () {
-					$(".ps").toggle("slow");
-					});
-				</script>
+				<script>$("span").click(function () {$(".ps").toggle("slow");});</script>
 			</nav>
 			<div id="gridContainer"></div>
 				<div id="FooterOptions">
-					
-					<span id="Label">Height</span>
-					<input class="slider1" type="range" id="heightY" min="5" onchange="rc()">
-					<span id="valuesY"></span> 
-					<br>
-					<span id="Label">Width</span>
-					<input class="slider2" type="range" id="widthX" min="5" onchange="rc()">
-					<span id="valuesX"></span> 
-					<select class="interval" id="interval" name="interval" onchange="rt(this.value)">
-						<option value="100">1/10 sec</option>
-						<option value="250">1/4 sec</option>
-						<option value="500">1/2 sec</option>
-						<option value="1000">1 sec</option>
-						<option value="2000">2 sec</option>
-					</select>
-
+					<div id="sizeAndSpeed">
+						<div id="sizeOfTable">
+							<span id="Label">Height</span>
+						<input class="slider1" type="range" id="heightY" min="5" onchange="rc()">
+						<span id="valuesY"></span> 
+						<br>
+						<span id="Label">Width</span>
+						<input class="slider2" type="range" id="widthX" min="5" onchange="rc()">
+						<span id="valuesX"></span> 
+						</div>
+						<div id="speedOfLife">
+							<select class="interval" id="interval" name="interval" onchange="rt(this.value)">
+								<option value="100">1/10 sec</option>
+								<option value="250">1/4 sec</option>
+								<option value="500">1/2 sec</option>
+								<option value="1000">1 sec</option>
+								<option value="2000">2 sec</option>
+							</select>
+						</div>
+						
+					</div>
 				<div id="bottomButtons">
 					<button id="oneMove" class="OneMove" value="1" onclick="stepButton(value)">1 Move</button>
 					<button id="fiveMoves" class="FiveMoves" value="5" onclick="stepButton(value)">5 Moves</button>
@@ -66,8 +64,13 @@
 				</div>
 				<div id="lifeRules">
 					<span id="LabelLifeRules">Life Rules:</span>
-					<span id="LabelRules">Standard</span><input type="radio" id="standardRule" name="applyRules" value="Standard" onchange="changeRules();" checked> 
-					<span id="LabelRules">Labirynt</span><input type="radio" id="customRule" name="applyRules" value="Custom"  onchange="changeRules();"> 
+					<select class="rules" id="rules" onchange="changeRules();">
+						<option value="standard">Standard</option>
+						<option value="maze">Maze</option>
+						<option value="highLife">High Life</option>
+						<option value="ameba">Ameba</option>
+						<option value="koral">Koral</option>
+					</select>
 				</div>
 				</div>
 		</div>

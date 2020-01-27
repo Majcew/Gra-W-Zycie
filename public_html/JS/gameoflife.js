@@ -57,6 +57,12 @@ function loadButton(){
     document.getElementById('MainInstruction').style.display = 'none';
 }
 
+function quitButton(){
+    document.getElementById('MainGame').style.display = 'none';
+	document.getElementById('MainMenu').style.display = 'inline';
+	document.getElementById('menuToggle').style.display = 'none';
+}
+
 function saveButton(table){
     var data = [];
     for (var i=0; i<table.rows.length; i++) {
@@ -371,15 +377,23 @@ function computeNextGen() {
     updateView();
 }
 var rule = "standard";
+
 function changeRules(){
-    if(document.getElementById("standardRule").checked){
+    if(document.getElementById("rules").value == "standard"){
         rule = "standard";
     }
-    
-    if(document.getElementById("customRule").checked){
-        rule = "custom";
+    else if(document.getElementById("rules").value == "maze"){
+        rule = "maze";
     }
-
+    else if(document.getElementById("rules").value == "highLife"){
+        rule = "highLife";
+    }
+    else if(document.getElementById("rules").value == "ameba"){
+        rule = "ameba";
+    }
+    else{
+        rule="koral";
+    }
 }
 
 function applyRules(row, col) {
@@ -408,7 +422,7 @@ function applyRules(row, col) {
             }
         }
     
-        if(rule === "custom"){
+        if(rule === "maze"){
             var numNeighbors = countNeighbors(row, col);
             if (grid[row][col] == 1) {
                 if (numNeighbors < 1) {
@@ -422,7 +436,7 @@ function applyRules(row, col) {
                         color[row][col] = "cyan";
                     }
                     else if(numNeighbors == 3){
-                        color[row][col] = "black";
+                        color[row][col] = "yellow";
                     }
                     else if(numNeighbors == 4){
                         color[row][col] = "white";
@@ -436,11 +450,98 @@ function applyRules(row, col) {
             } else if (grid[row][col] == 0) {
                 if (numNeighbors == 3) {
                     nextGrid[row][col] = 1;
-                    color[row][col] = "yellow";
+                    color[row][col] = "black";
                 }
             }
         }
-}
+
+        if(rule === "highLife"){
+            var numNeighbors = countNeighbors(row, col);
+            if (grid[row][col] == 1) {
+                if (numNeighbors < 2) {
+                    nextGrid[row][col] = 0;
+                } else if (numNeighbors == 2 || numNeighbors == 3) {
+                    nextGrid[row][col] = 1;
+                    if(numNeighbors == 2){
+                        color[row][col] = "cyan";
+                    }
+                    else{
+                        color[row][col] = "pink";
+                    }
+                } else if (numNeighbors > 3) {
+                    nextGrid[row][col] = 0;
+                }
+            } else if (grid[row][col] == 0) {
+                if (numNeighbors == 3 || numNeighbors == 6) {
+                    nextGrid[row][col] = 1;
+                    color[row][col] = "black";
+                }
+            }
+        }
+
+        if(rule === "ameba"){
+            var numNeighbors = countNeighbors(row, col);
+            if (grid[row][col] == 1) {
+                if (numNeighbors < 1) {
+                    nextGrid[row][col] = 0;
+                } else if (numNeighbors == 1 ||  numNeighbors == 3 || numNeighbors == 5 || numNeighbors == 8) {
+                    nextGrid[row][col] = 1;
+                    if(numNeighbors == 1) {
+                        color[row][col] = "blue";
+                    }
+                    else if(numNeighbors == 3){
+                        color[row][col] = "cyan";
+                    }
+                    else if(numNeighbors == 5){
+                        color[row][col] = "yellow";
+                    }
+                    else {
+                        color[row][col] = "pink";
+                    }
+                } else if (numNeighbors > 8) {
+                    nextGrid[row][col] = 0;
+                }
+            } else if (grid[row][col] == 0) {
+                if (numNeighbors == 3 || numNeighbors == 5|| numNeighbors == 7) {
+                    nextGrid[row][col] = 1;
+                    color[row][col] = "black";
+                }
+            }
+        }
+
+        if(rule === "koral"){
+            var numNeighbors = countNeighbors(row, col);
+            if (grid[row][col] == 1) {
+                if (numNeighbors < 4) {
+                    nextGrid[row][col] = 0;
+                } else if (numNeighbors == 4 ||  numNeighbors == 5 || numNeighbors == 6 || numNeighbors == 7 || numNeighbors == 8) {
+                    nextGrid[row][col] = 1;
+                    if(numNeighbors == 4) {
+                        color[row][col] = "blue";
+                    }
+                    else if(numNeighbors == 5){
+                        color[row][col] = "cyan";
+                    }
+                    else if(numNeighbors == 6){
+                        color[row][col] = "yellow";
+                    }
+                    else if(numNeighbors == 7){
+                        color[row][col] = "white";
+                    }
+                    else{
+                        color[row][col] = "pink";
+                    }
+                } else if (numNeighbors > 8) {
+                    nextGrid[row][col] = 0;
+                }
+            } else if (grid[row][col] == 0) {
+                if (numNeighbors == 3) {
+                    nextGrid[row][col] = 1;
+                    color[row][col] = "black";
+                }
+            }
+        }
+    }
 
 
 

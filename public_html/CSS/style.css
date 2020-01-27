@@ -170,6 +170,10 @@ a:hover
 	display: none;
 }
 
+#MainInstruction p {
+	margin: 10px 9px 15px 9px;
+}
+
 #MainOptions{
 	display: none;
 }
@@ -316,12 +320,11 @@ text-shadow: 2px 2px 11px #000000;
 
 #MainInstruction{
 font-family: "Arial Black", Gadget, sans-serif;
-
 letter-spacing: -0.6px;
 word-spacing: -0.2px;
 color: #CDD1D1;
 font-weight: 700;
-text-align: center;
+text-align: justify;
 text-decoration: none solid rgb(68, 68, 68);
 font-style: normal;
 font-variant: normal;

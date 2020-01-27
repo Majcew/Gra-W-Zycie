@@ -47,13 +47,11 @@ function optionsButton(){
 function instructionButton(){
     document.getElementById('MainInstruction').style.display = 'inline';
     document.getElementById('MainGame').style.display = 'none';
-    document.getElementById('MainOptions').style.display = 'none';
 }
 
 function loadButton(){
     document.getElementById('MainLoad').style.display = 'inline';
     document.getElementById('MainGame').style.display = 'none';
-    document.getElementById('MainOptions').style.display = 'none';
     document.getElementById('MainInstruction').style.display = 'none';
 }
 

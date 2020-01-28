@@ -128,16 +128,18 @@ function loadFiles(){
     request.open("POST", "../PHP/server.php", true);
     request.send(JSON.stringify({
         polecenie: 3
-    }));
+    })); }, 3000);
+    
 }
 
 function loadMenuButton(){
-    if(document.getElementById("pliki").value != '')
+ setTimeout(function(){if(document.getElementById("pliki").value != '')
     {
         document.getElementById("loadMenuButton").style.display = 'inline';
     }else{
         document.getElementById("loadMenuButton").style.display = 'none';
-    }
+    }}, 3000);
+    
 }
 
 /* ******************************************** MODUŁY ODPOWIEDZIALNE ZA DZIAŁANIE GAME OF LIFE ******************************************** */
